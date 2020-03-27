@@ -9,6 +9,7 @@ export default new Vuex.Store({
     currDistrict: '北投區',
     location: [],
     stores: [],
+    keywords: '',
   },
   getters: {
     cityList(state) {
@@ -20,9 +21,12 @@ export default new Vuex.Store({
       return state.location.find((d) => d.name === state.currCity)?.districts || [];
     },
     filteredStores(state) {
-      // 依行政區分組
+      // 依縣市、行政區分組
       const { stores } = state;
-      return stores.filter((d) => d.county === state.currCity && d.town === state.currDistrict);
+
+      return state.keywords
+        ? stores.filter((d) => d.name.includes(state.keywords))
+        : stores.filter((d) => d.county === state.currCity && d.town === state.currDistrict);
     },
   },
   mutations: {
@@ -37,6 +41,9 @@ export default new Vuex.Store({
     },
     setStores(state, payload) {
       state.stores = payload;
+    },
+    setKeywords(state, payload) {
+      state.keywords = payload;
     },
   },
   actions: {

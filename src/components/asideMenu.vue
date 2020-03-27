@@ -2,10 +2,17 @@
   <div class="aside-menu">
     <div class="wraps">
       <label>
-        縣市：<select><option>台北市</option></select>
+        縣市：
+        <select v-model="currCity">
+          <option v-for="c in cityList" :key="c">{{ c }}</option>
+        </select>
       </label>
+
       <label>
-        行政區：<select><option>北投區</option></select>
+        行政區：
+        <select v-model="currDistrict">
+          <option v-for="d in districtList" :key="d.id">{{ d.name }}</option>
+        </select>
       </label>
     </div>
 
@@ -91,5 +98,35 @@
 <script>
 export default {
   name: 'asideMenu',
+  computed: {
+    currCity: {
+      get() {
+        return this.$store.state.currCity;
+      },
+      set(value) {
+        this.$store.commit('setcurrCity', value);
+      },
+    },
+    currDistrict: {
+      get() {
+        return this.$store.state.currDistrict;
+      },
+      set(value) {
+        this.$store.commit('setcurrDistrict', value);
+      },
+    },
+    cityList() {
+      return this.$store.getters.cityList;
+    },
+    districtList() {
+      return this.$store.getters.districtList;
+    },
+  },
+  watch: {
+    districtList(v) {
+      const [arr] = v;
+      this.currDistrict = arr.name;
+    },
+  },
 };
 </script>

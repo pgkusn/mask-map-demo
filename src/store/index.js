@@ -10,6 +10,16 @@ export default new Vuex.Store({
     location: [],
     stores: [],
   },
+  getters: {
+    cityList(state) {
+    // 城市
+      return state.location.map((d) => d.name);
+    },
+    districtList(state) {
+    // 行政區
+      return state.location.find((d) => d.name === state.currCity)?.districts || [];
+    },
+  },
   mutations: {
     setcurrCity(state, payload) {
       state.currCity = payload;

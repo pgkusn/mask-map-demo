@@ -10,6 +10,8 @@ export default new Vuex.Store({
     location: [],
     stores: [],
     keywords: '',
+    showModal: false,
+    infoBoxSid: null,
   },
   getters: {
     cityList(state) {
@@ -44,6 +46,12 @@ export default new Vuex.Store({
     },
     setKeywords(state, payload) {
       state.keywords = payload;
+    },
+    setshowModal(state, payload) {
+      state.showModal = payload;
+    },
+    setInfoBoxSid(state, payload) {
+      state.infoBoxSid = payload;
     },
   },
   actions: {

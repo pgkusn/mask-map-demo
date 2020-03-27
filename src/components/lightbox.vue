@@ -4,7 +4,7 @@
       <div class="modal-wrapper" @click.self="close">
 
         <div class="modal-container">
-          <div class="modal-body">
+          <div class="modal-body" v-if="currStore">
 
             <h1 class="store-name">{{ currStore.name }}</h1>
 

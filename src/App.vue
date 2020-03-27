@@ -1,8 +1,7 @@
 <template>
   <div id="app">
-    <aside-menu />
-    <div class="mask-map" id="mask-map"></div>
-
+    <aside-menu @triggerMarkerPopup="openPopup" ref="menu" />
+    <mask-map ref="map" />
     <light-box />
   </div>
 </template>
@@ -10,12 +9,19 @@
 <script>
 import asideMenu from './components/asideMenu.vue';
 import lightBox from './components/lightbox.vue';
+import maskMap from './components/maskMap.vue';
 
 export default {
   name: 'App',
   components: {
     asideMenu,
     lightBox,
+    maskMap,
+  },
+  methods: {
+    openPopup(id) {
+      this.$refs.map.triggerPopup(id);
+    },
   },
   mounted() {
     this.$store.dispatch('fetchLocations');

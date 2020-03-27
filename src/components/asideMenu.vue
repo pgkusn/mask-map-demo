@@ -24,68 +24,24 @@
     </div>
 
     <ul class="store-lists">
-      <li class="store-info wraps">
-        <h1>五倍藥局</h1>
+      <li class="store-info wraps" v-for="s in filteredStores" :key="s.id">
+        <h1>{{ s.name }}</h1>
 
         <div class="mask-info">
           <i class="fas fa-head-side-mask"></i>
-          <span>大人口罩: 100 個</span>
+          <span>大人口罩: {{ s.mask_adult }} 個</span>
         </div>
 
         <div class="mask-info">
           <i class="fas fa-baby"></i>
-          <span>兒童口罩: 100 個</span>
+          <span>兒童口罩: {{ s.mask_child }} 個</span>
         </div>
 
         <div class="mask-info">
-          最後更新時間:
+          最後更新時間: {{ s.updated }}
         </div>
 
-        <button class="btn-store-detail">
-          <i class="fas fa-info-circle"></i>
-          看詳細資訊
-        </button>
-      </li>
-      <li class="store-info wraps">
-        <h1>五倍藥局</h1>
-
-        <div class="mask-info">
-          <i class="fas fa-head-side-mask"></i>
-          <span>大人口罩: 100 個</span>
-        </div>
-
-        <div class="mask-info">
-          <i class="fas fa-baby"></i>
-          <span>兒童口罩: 100 個</span>
-        </div>
-
-        <div class="mask-info">
-          最後更新時間:
-        </div>
-
-        <button class="btn-store-detail">
-          <i class="fas fa-info-circle"></i>
-          看詳細資訊
-        </button>
-      </li>
-      <li class="store-info wraps">
-        <h1>五倍藥局</h1>
-
-        <div class="mask-info">
-          <i class="fas fa-head-side-mask"></i>
-          <span>大人口罩: 100 個</span>
-        </div>
-
-        <div class="mask-info">
-          <i class="fas fa-baby"></i>
-          <span>兒童口罩: 100 個</span>
-        </div>
-
-        <div class="mask-info">
-          最後更新時間:
-        </div>
-
-        <button class="btn-store-detail">
+        <button class="btn-store-detail" @click="openInfoBox(s.id)">
           <i class="fas fa-info-circle"></i>
           看詳細資訊
         </button>
@@ -114,6 +70,9 @@ export default {
       set(value) {
         this.$store.commit('setcurrDistrict', value);
       },
+    },
+    filteredStores() {
+      return this.$store.getters.filteredStores;
     },
     cityList() {
       return this.$store.getters.cityList;

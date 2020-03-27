@@ -19,6 +19,11 @@ export default new Vuex.Store({
     // 行政區
       return state.location.find((d) => d.name === state.currCity)?.districts || [];
     },
+    filteredStores(state) {
+      // 依行政區分組
+      const { stores } = state;
+      return stores.filter((d) => d.county === state.currCity && d.town === state.currDistrict);
+    },
   },
   mutations: {
     setcurrCity(state, payload) {

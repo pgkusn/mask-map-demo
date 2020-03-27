@@ -2,7 +2,6 @@
   <div id="app">
     <aside-menu />
     <div class="mask-map" id="mask-map"></div>
-
   </div>
 </template>
 
@@ -13,6 +12,10 @@ export default {
   name: 'App',
   components: {
     asideMenu,
+  },
+  mounted() {
+    this.$store.dispatch('fetchLocations');
+    this.$store.dispatch('fetchPharmacies');
   },
 };
 </script>

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <aside-menu @triggerMarkerPopup="openPopup" ref="menu" />
+    <aside-menu @trigger-marker-popup="openPopup" ref="menu" />
     <mask-map ref="map" />
     <light-box />
   </div>
